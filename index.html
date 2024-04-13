@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Make Your Game</title>
+</head>
+<body>
+    <div class="contain">
+        <div class="grid">
+            <div class="overPlay">
+                <h1>Tetris</h1>
+                <div class="start">
+                    <span class="videg" id="Play">Play</span>
+                </div>
+            </div>
+            <div class="overPause">
+                <h1>Paused</h1>
+                <div class="start">
+                    <span class="videg" id="Continue">Continue</span>
+                    <span class="videg" id="Replay">Restart</span>
+                </div>
+            </div>
+            <div class="overRetry">
+                <h1  id="tetris"></h1>
+                <div class="start">
+                    <span class="videg" id="Retry">Retry</span>
+                </div>
+            </div>
+            <div class="overGame">
+                <h1>Game-over</h1>
+                <div class="start">
+                    <span class="videg" id="Restart">Restart</span>
+                </div>
+            </div>
+        </div>
+        <div class="Preview">
+            <h2>Next</h2>
+            <div class="case"></div>
+        </div>
+        <div class="tableau">
+        </div>
+        <div class="button">
+            <div class="card">
+                <div class="rating">
+                    <h2><span class="counter" data-target=""></span><h5>sec</h5></h2>
+                </div>
+                <svg>
+                    <circle id="circle" cx="75" cy="75" r="70"/>
+                </svg>
+                <div class="svg" id="Pause">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm224-72V328c0 13.3-10.7 24-24 24s-24-10.7-24-24V184c0-13.3 10.7-24 24-24s24 10.7 24 24zm112 0V328c0 13.3-10.7 24-24 24s-24-10.7-24-24V184c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="script/fonctionality.js"></script>
+</body>
+</html>
