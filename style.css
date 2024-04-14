@@ -282,16 +282,42 @@ h5{
 #Pause{
     visibility: hidden;
 }
-/* .overPause{
+.malette{
     display: none;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 5;
 }
-.overRetray{
-    display: none;
+@media screen and (max-width: 500px) {
+    .malette {
+        display: flex;
+        position: absolute;
+        bottom: -140px;
+        left: 80px;
+        width: 294px;
+        height: 145px;
+        justify-content: center;
+        align-items: end;
+        gap: 30px;
+    }
+    .left, .up, .down, .right{
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #0f0;
+        box-shadow: 0 4px 8px 0 #1d0a06;
+    }
+    .left, .up, .down, .right svg{
+        fill:#4b080c;
+    }
+    .middle{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+    }
 }
-
-.overGame{
-    display: none;
-} */
 .svg{
     align-self: center;
     text-align: center;

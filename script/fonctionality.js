@@ -41,9 +41,9 @@ const gameOverPause = document.querySelector(".overPause");
 const gameOverRetry = document.querySelector(".overRetry");
 const gameOverGame = document.querySelector(".overGame");
 
-gameOverPause.style.visibility="hidden"
-gameOverRetry.style.visibility="hidden"
-gameOverGame.style.visibility="hidden"
+gameOverPause.style.visibility = "hidden";
+gameOverRetry.style.visibility = "hidden";
+gameOverGame.style.visibility = "hidden";
 
 const divscore = document.querySelector(".score");
 const divlevel = document.querySelector(".level");
@@ -54,7 +54,7 @@ function handelScoreLevel(score, level) {
 }
 
 let calculLevel = 100;
-let runGame =false;
+let runGame = false;
 
 function start() {
   let startTime;
@@ -64,7 +64,7 @@ function start() {
       startTime = stamp;
     }
     const elapsed = stamp - startTime;
-    if (elapsed >= 500&&runGame) {
+    if (elapsed >= 500 && runGame) {
       const value = time.textContent;
       if (!tetromino) {
         randomPiece = Math.floor(Math.random() * pieces.length);
@@ -113,8 +113,8 @@ function start() {
   requestAnimationFrame(game);
 }
 
-window.addEventListener('load',()=>{
-  requestAnimationFrame(start)
+window.addEventListener("load", () => {
+  requestAnimationFrame(start);
 });
 
 function coord_cell(piece, X, Y) {
@@ -377,19 +377,19 @@ function gameOver(board, timer) {
     valStroke += 147;
     circle.style.strokeDashoffset = valStroke;
     circle.style.transition = "stroke-dashoffset 0.5s linear";
-    pause.style.visibility="hidden";
-    blockKey=true;
+    pause.style.visibility = "hidden";
+    blockKey = true;
 
     if (valStroke === 441) {
-      gameOverGame.style.visibility="visible";
+      gameOverGame.style.visibility = "visible";
     }
 
     if (valStroke != 441) {
       tetris.textContent = "Time-out";
-      gameOverRetry.style.visibility="visible";
+      gameOverRetry.style.visibility = "visible";
     }
 
-    runGame=false;
+    runGame = false;
     cancelAnimationFrame(stopTimer);
     return;
   }
@@ -398,18 +398,18 @@ function gameOver(board, timer) {
     valStroke += 147;
     circle.style.strokeDashoffset = valStroke;
     circle.style.transition = "stroke-dashoffset 0.5s linear";
-    pause.style.visibility="hidden";
-    
+    pause.style.visibility = "hidden";
+
     if (valStroke === 441) {
-      gameOverGame.style.visibility="visible";
+      gameOverGame.style.visibility = "visible";
     }
 
     if (valStroke != 441) {
       tetris.textContent = "Block-out";
-      gameOverRetry.style.visibility="visible"
+      gameOverRetry.style.visibility = "visible";
     }
 
-    runGame=false;
+    runGame = false;
     cancelAnimationFrame(stopTimer);
     return;
   }
@@ -441,16 +441,16 @@ function refresh() {
 play.addEventListener("click", () => {
   gameOverPlay.style.visibility = "hidden";
   pause.style.visibility = "visible";
-  runGame=true;
+  runGame = true;
 
   requestAnimationFrame(NumberCounter);
 });
 
 pause.addEventListener("click", () => {
   gameOverPause.style.visibility = "visible";
-  pause.style.visibility="hidden"
+  pause.style.visibility = "hidden";
   blockKey = true;
-  runGame=false;
+  runGame = false;
 
   cancelAnimationFrame(stopTimer);
 });
@@ -458,8 +458,8 @@ pause.addEventListener("click", () => {
 Continue.addEventListener("click", () => {
   gameOverPause.style.visibility = "hidden";
   pause.style.visibility = "visible";
-  blockKey=false;
-  runGame=true;
+  blockKey = false;
+  runGame = true;
 
   requestAnimationFrame(NumberCounter);
 });
@@ -468,8 +468,8 @@ retry.addEventListener("click", () => {
   gameOverRetry.style.visibility = "hidden";
   pause.style.visibility = "visible";
   refresh();
-  blockKey=false;
-  runGame=true;
+  blockKey = false;
+  runGame = true;
 
   requestAnimationFrame(NumberCounter);
 });
@@ -477,13 +477,13 @@ retry.addEventListener("click", () => {
 replay.addEventListener("click", () => {
   gameOverPause.style.visibility = "hidden";
   pause.style.visibility = "visible";
-  blockKey=false;
+  blockKey = false;
   score = 0;
   level = 1;
-  valStroke=0;
+  valStroke = 0;
   refresh();
-  blockKey=false;
-  runGame=true;
+  blockKey = false;
+  runGame = true;
 
   requestAnimationFrame(NumberCounter);
 });
@@ -491,13 +491,86 @@ replay.addEventListener("click", () => {
 restart.addEventListener("click", () => {
   gameOverGame.style.visibility = "hidden";
   pause.style.visibility = "visible";
-  blockKey=false;
+  blockKey = false;
   score = 0;
   level = 1;
-  valStroke=0
+  valStroke = 0;
   refresh();
-  blockKey=false;
-  runGame=true;
+  blockKey = false;
+  runGame = true;
 
   requestAnimationFrame(NumberCounter);
+});
+const up = document.getElementById("up");
+const down = document.getElementById("down");
+const left = document.getElementById("left");
+const right = document.getElementById("right");
+
+const upp = document.getElementById("upp");
+const downn = document.getElementById("downn");
+const leftt = document.getElementById("leftt");
+const rightt = document.getElementById("rightt");
+
+// Gestion de l'événement pour phone
+window.addEventListener("click", (e) => {
+  const paroieR = "ArrowRight";
+  const paroieL = "ArrowLeft";
+  if (blockKey === false) {
+    let X = 0;
+    if (e.target === down || e.target === downn) {
+      while (IsValid_mouveTetro(tetromino, Px, Py)) Py++;
+      score += 4;
+    }
+    if (
+      (e.target === right || e.target === rightt) &&
+      collision_Detecte(tetromino, Px, Py, paroieR)
+    ) {
+      Px++;
+    }
+    if (
+      (e.target === left || e.target === leftt) &&
+      collision_Detecte(tetromino, Px, Py, paroieL)
+    ) {
+      Px--;
+    }
+
+    if (
+      (e.target === up || e.target === upp) &&
+      IsValid_mouveTetro(tetromino, Px, Py)
+    ) {
+      X = Px;
+      // coordonnee axe de rotation du tetrominos
+      const coordAxe = coordAxeRotation(tetromino, X, Py);
+      if (isNaN(coordAxe.x)) {
+        return;
+      }
+      // verifier si le paroi gauche du tetromino est en collision avant de faire une rotation
+      if (collisionAxeRotation(tetromino, coordAxe.x, coordAxe.y, coteLeft)) {
+        X = coordAxe.x;
+        coordAxe.x++;
+      }
+
+      // verifier si le paroi droite du tetromino est en collision avant de faire une rotation
+      if (collisionAxeRotation(tetromino, coordAxe.x, coordAxe.y, coteRight)) {
+        X = coordAxe.x - 2;
+        coordAxe.x--;
+        if (!IsValid_rotation(tetromino, coordAxe.x, coordAxe.y)) {
+          X -= 1;
+          coordAxe.x--;
+        }
+      }
+
+      // verifier si une rotation de tetromino est possible
+      if (IsValid_rotation(tetromino, coordAxe.x, coordAxe.y)) {
+        Px = X;
+        rotation++;
+        if (rotation === tetros.length) {
+          rotation = 0;
+        }
+        tetromino = tetros[rotation];
+      }
+    }
+
+    draw_tetromino(tetromino, Px, Py, color);
+  }
 });
